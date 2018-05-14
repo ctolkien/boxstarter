@@ -140,12 +140,13 @@ choco install -y visualstudio2017buildtools
 choco install -y visualstudio2017-workload-vctools
 choco install -y sysinternals
 choco install -y docker-for-windows
-Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
+Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
 choco install -y python
 RefreshEnv.cmd
 
 choco install -y pip
 choco install -y mongodb.install
+Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'MongoDB Compass Community.lnk' } | Remove-Item
 choco install -y kubernetes-cli
 choco install -y terraform
 
@@ -171,8 +172,9 @@ choco install -y steam --allowEmptyCheckSum
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Steam.lnk' } | Remove-Item
 Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run -Name 'Steam' -ErrorAction SilentlyContinue
 
-
 npm install -g npm npm-check-updates rimraf typescript@2.7.2 gulp @angular/cli
+
+# Install 'Sauce Code Pro Nerd Font Complete Mono.ttf'
 
 Enable-UAC
 Enable-MicrosoftUpdate
