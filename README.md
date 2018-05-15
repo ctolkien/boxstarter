@@ -15,3 +15,11 @@ To run a setup script, click a link in the table below from your target machine.
 | Click link to run                                                                                                                                                                           | Description   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/RobCannon/boxstarter/master/dev_box.ps1?token=AK0OHkKpCgt-8lIcqBiQ1amsoPRrsDB7ks5a-J-0wA%3D%3D'>dev_box</a> | My Boxstarter |
+
+
+
+#### Setup up WSL via curl
+
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/RobCannon/boxstarter/master/boxstarter.sh)"
+```
