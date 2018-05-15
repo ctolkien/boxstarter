@@ -44,7 +44,7 @@ ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.bashrc ~/.bashrc
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.zshrc ~/.zshrc
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.ssh ~/.ssh
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.kube/config ~/.kube/config
-ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.kube/conigs ~/.kube/configs
+ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.kube/configs ~/.kube/configs
 
 # Install oh-my-zsh
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k

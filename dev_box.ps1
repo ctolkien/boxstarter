@@ -131,11 +131,16 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 choco install -y lastpass --ignore-checksums
 
 #--- Fonts ---
-
-choco install -y inconsolata
-# choco install -y ubuntu.font
-# Invoke- https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip
-
+#choco install -y inconsolata
+if (-not (Get-ChildItem ([Environment]::GetFolderPath('Fonts')) | ? Name -eq 'Sauce Code Pro Nerd Font Complete Mono.ttf')) {
+    if (Test-Path "$env:TEMP\SourceCodePro.zip") { Remove-Item "$env:TEMP\SourceCodePro.zip" }
+    Invoke-WebRequest https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip -OutFile "$env:TEMP\SourceCodePro.zip"
+    Expand-Archive "$env:TEMP\SourceCodePro.zip" -DestinationPath "$env:TEMP\SourceCodePro"
+    $fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)
+    Get-Item "$env:TEMP\SourceCodePro\Sauce Code Pro Nerd Font Complete Mono.ttf" | % { $fonts.CopyHere($_.fullname) }
+    Remove-Item "$env:TEMP\SourceCodePro.zip" -Force
+    Remove-Item "$env:TEMP\SourceCodePro" -Recurse -Force
+}
 
 #--- Tools ---
 choco install -y nodejs # Node.js Current, Latest features
