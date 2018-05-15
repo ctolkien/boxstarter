@@ -40,8 +40,10 @@ rm ~/.bashrc
 rm ~/.zshrc
 rm -rf ~/.ssh
 mkdir ~/.kube
+rm -rf ~/.kube/configs
 rm ~/.kube/.kube-config-sox-dev
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.profile ~/.profile
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.bashrc ~/.bashrc
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.zshrc ~/.zshrc
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.ssh ~/.ssh
+ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.kube/conigs ~/.kube/configs
