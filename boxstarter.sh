@@ -29,9 +29,6 @@ unzip terraform_0.11.1_linux_amd64.zip
 rm terraform_0.11.1_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 # Set up symlinks to share files across computers
 sudo chown $USER ~/.config
@@ -40,10 +37,15 @@ rm ~/.bashrc
 rm ~/.zshrc
 rm -rf ~/.ssh
 mkdir ~/.kube
+rm ~/.kube/config
 rm -rf ~/.kube/configs
-rm ~/.kube/.kube-config-sox-dev
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.profile ~/.profile
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.bashrc ~/.bashrc
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.zshrc ~/.zshrc
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.ssh ~/.ssh
+ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.kube/config ~/.kube/config
 ln -s /mnt/c/Users/$USER/OneDrive/Documents/Keep/Linux/.kube/conigs ~/.kube/configs
+
+# Install oh-my-zsh
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
