@@ -4,10 +4,10 @@ sudo curl -o /etc/apt/sources.list.d/microsoft.list https://packages.microsoft.c
 
 sudo apt-get update
 
-sudo apt-get install -y apt-transport-https unzip docker.io python3 python-pip nodejs zsh
+sudo apt-get install -y apt-transport-https unzip docker.io python3 nodejs zsh
 sudo apt-get install -y --allow-unauthenticated powershell
 
-pip install --upgrade pip
+#sudo pip install --upgrade pip
 
 # Install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -18,10 +18,10 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 sudo npm install -g @angular/cli
 
 # Install aws client
-pip install awscli --upgrade --user
+pip install awscli --user
 
 # Install samld
-pip install samlkeygen
+pip install samlkeygen --user
 
 # Install terraform
 wget https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip

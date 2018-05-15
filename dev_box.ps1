@@ -94,7 +94,7 @@ Enable-WSManCredSSP -Role Client -DelegateComputer * -Force | Out-Null
 Update-Help -Force
 
 #--- Windows Features ---
-Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions
 
 # Enable QuickEdit mode
 Set-ItemProperty HKCU:\Console\ -name QuickEdit -value 1
@@ -109,7 +109,7 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 choco install -y visualstudiocode
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
 
-choco install -y git -params '"/GitAndUnixToolsOnPath /WindowsTerminal"'
+choco install -y git -params '"/NoShellIntegration"'
 choco install -y Git-Credential-Manager-for-Windows
 choco install -y 7zip.install
 choco install -y rsat
@@ -131,14 +131,18 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 choco install -y lastpass --ignore-checksums
 
 #--- Fonts ---
+
 choco install -y inconsolata
 # choco install -y ubuntu.font
+# Invoke- https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip
+
 
 #--- Tools ---
 choco install -y nodejs # Node.js Current, Latest features
 choco install -y visualstudio2017buildtools
 choco install -y visualstudio2017-workload-vctools
 choco install -y sysinternals
+choco install -y cmder
 choco install -y docker-for-windows
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
 choco install -y python
