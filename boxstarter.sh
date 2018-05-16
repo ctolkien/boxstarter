@@ -29,6 +29,8 @@ unzip terraform_0.11.1_linux_amd64.zip
 rm terraform_0.11.1_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 
+# Install azure-cli
+curl -L https://aka.ms/InstallAzureCli | bash
 
 # Set up symlinks to share files across computers
 sudo chown $USER ~/.config
