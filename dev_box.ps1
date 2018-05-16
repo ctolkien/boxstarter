@@ -122,8 +122,9 @@ choco install -y Microsoft-Hyper-V-All -source windowsFeatures
 choco install -y Microsoft-Windows-Subsystem-Linux -source windowsfeatures
 
 #--- Ubuntu ---
-Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1604 -OutFile ~/Ubuntu.appx -UseBasicParsing
+Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile ~/Ubuntu.appx -UseBasicParsing
 Add-AppxPackage -Path ~/Ubuntu.appx
+Remove-Item ~/Ubuntu.appx
 
 #--- Browsers ---
 choco install -y Googlechrome
@@ -144,8 +145,12 @@ if (-not (Get-ChildItem ([Environment]::GetFolderPath('Fonts')) | ? Name -eq 'Sa
 
 #--- Tools ---
 choco install -y nodejs # Node.js Current, Latest features
+choco install -y vscode
+choco install -y visualstudio2017enterprise
 choco install -y visualstudio2017buildtools
-choco install -y visualstudio2017-workload-vctools
+choco install -y visualstudio2017-workload-netweb
+choco install -y visualstudio2017-workload-webbuildtools
+choco install -y visualstudio2017-workload-netcoretools
 choco install -y sysinternals
 choco install -y cmder
 choco install -y docker-for-windows
@@ -182,8 +187,6 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run -Name 'Steam' -ErrorAction SilentlyContinue
 
 npm install -g npm npm-check-updates rimraf typescript@2.7.2 gulp @angular/cli
-
-# Install 'Sauce Code Pro Nerd Font Complete Mono.ttf'
 
 Enable-UAC
 Enable-MicrosoftUpdate
