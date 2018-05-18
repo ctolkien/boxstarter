@@ -24,9 +24,9 @@ pip install awscli --user
 pip install samlkeygen --user
 
 # Install terraform
-wget https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
-unzip terraform_0.11.1_linux_amd64.zip
-rm terraform_0.11.1_linux_amd64.zip
+wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
+unzip terraform_0.11.7_linux_amd64.zip
+rm terraform_0.11.7_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 
 # Install azure-cli
