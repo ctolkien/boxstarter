@@ -145,7 +145,7 @@ code --install-extension shan.code-settings-sync
 code --install-extension msjsdiag.debugger-for-chrome
 code --install-extension msjsdiag.debugger-for-edge
 
-choco install -y git -params '"/NoShellIntegration"'
+choco install -y git -params '"/NoShellIntegration /NoAutoCrlf /WindowsTerminal /SChannel"'
 choco install -y 7zip.install
 choco install -y rsat
 choco install -y DiffMerge --allow-empty-checksums
