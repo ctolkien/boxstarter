@@ -105,12 +105,17 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -Value 1
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
+# Enable PIN and Windows Hello
+Set-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\System -name AllowDomainPINLogon -value 1
+
 #--- Tools ---
-choco install -y visualstudiocode
+choco install -y vscode
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
+code --install-extension shan.code-settings-sync
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension msjsdiag.debugger-for-edge
 
 choco install -y git -params '"/NoShellIntegration"'
-choco install -y Git-Credential-Manager-for-Windows
 choco install -y 7zip.install
 choco install -y rsat
 choco install -y DiffMerge --allow-empty-checksums
@@ -144,13 +149,10 @@ if (-not (Get-ChildItem ([Environment]::GetFolderPath('Fonts')) | ? Name -eq 'Sa
 }
 
 #--- Tools ---
+choco install adobereader -y --allow-empty-checksums
+Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Acrobat Reader DC.lnk' } | Remove-Item
+choco install -y sql-server-management-studio
 choco install -y nodejs # Node.js Current, Latest features
-choco install -y vscode
-choco install -y visualstudio2017enterprise
-choco install -y visualstudio2017buildtools
-choco install -y visualstudio2017-workload-netweb
-choco install -y visualstudio2017-workload-webbuildtools
-choco install -y visualstudio2017-workload-netcoretools
 choco install -y sysinternals
 choco install -y cmder
 choco install -y docker-for-windows
@@ -174,13 +176,12 @@ Install-Module Azure -Scope CurrentUser
 [Environment]::SetEnvironmentVariable('ADFS_URL', 'https://sts.turner.com/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=urn:amazon:webservices', 'User')
 pip install samlkeygen
 
-choco install adobereader -y --allow-empty-checksums
-Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Acrobat Reader DC.lnk' } | Remove-Item
+choco install -y visualstudio2017enterprise
+choco install -y visualstudio2017buildtools
+choco install -y visualstudio2017-workload-netweb
+choco install -y visualstudio2017-workload-webbuildtools
+choco install -y visualstudio2017-workload-netcoretools
 
-choco install -y sql-server-management-studio
-
-# Enable PIN and Windows Hello
-Set-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\System -name AllowDomainPINLogon -value 1
 
 choco install -y steam --allowEmptyCheckSum
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Steam.lnk' } | Remove-Item
