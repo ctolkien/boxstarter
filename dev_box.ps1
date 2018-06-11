@@ -57,9 +57,6 @@ if (-not (Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction:SilentlyCo
 Write-Host "Bootstrapping NuGet provider" -ForegroundColor Yellow
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 
-Write-Host "Trusting Chocolatey package source" -ForegroundColor Yellow
-Set-PackageSource -Name Chocolatey -Trusted -Force | Out-Null
-
 Write-Host "Trusting PSGallery" -ForegroundColor Yellow
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
@@ -137,20 +134,6 @@ Get-AppxPackage Microsoft.XboxIdentityProvider | Remove-AppxPackage
 Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
 Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
 
-
-#--- Tools ---
-choco install -y vscode
-Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
-code --install-extension shan.code-settings-sync
-code --install-extension msjsdiag.debugger-for-chrome
-code --install-extension msjsdiag.debugger-for-edge
-
-choco install -y git -params '"/NoShellIntegration /NoAutoCrlf /WindowsTerminal /SChannel"'
-choco install -y 7zip.install
-choco install -y rsat
-choco install -y DiffMerge --allow-empty-checksums
-Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'DiffMerge.lnk' } | Remove-Item
-
 #--- Windows Subsystems/Features ---
 choco install -y IIS-WebServerRole -source windowsFeatures
 choco install -y Microsoft-Hyper-V-All -source windowsFeatures
@@ -178,7 +161,11 @@ if (-not (Get-ChildItem ([Environment]::GetFolderPath('Fonts')) | ? Name -eq 'Sa
     Remove-Item "$env:TEMP\SourceCodePro" -Recurse -Force
 }
 
-#--- Tools ---
+choco install -y git -params '"/NoShellIntegration /NoAutoCrlf /WindowsTerminal /SChannel"'
+choco install -y 7zip.install
+choco install -y rsat
+choco install -y DiffMerge --allow-empty-checksums
+Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'DiffMerge.lnk' } | Remove-Item
 choco install adobereader -y --allow-empty-checksums
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Acrobat Reader DC.lnk' } | Remove-Item
 choco install -y sql-server-management-studio
@@ -205,6 +192,16 @@ Install-Module Azure -Scope CurrentUser
 [Environment]::SetEnvironmentVariable('ADFS_DOMAIN', 'TURNER', 'User')
 [Environment]::SetEnvironmentVariable('ADFS_URL', 'https://sts.turner.com/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=urn:amazon:webservices', 'User')
 pip install samlkeygen
+
+#--- VS Code ---
+choco install -y vscode
+Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
+RefreshEnv.cmd
+code --install-extension shan.code-settings-sync
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension msjsdiag.debugger-for-edge
+
+
 
 choco install -y visualstudio2017enterprise
 choco install -y visualstudio2017buildtools
