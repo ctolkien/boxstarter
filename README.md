@@ -12,9 +12,10 @@ This is based on these projects
 
 To run a setup script, click a link in the table below from your target machine. This will download Boxstarter, and prompt you for Boxstarter to run with Administrator privileges (which it needs to do its job). Clicking yes in this dialog will cause the script to begin. You can then leave the job unattended and come back when it's finished.
 
-| Click link to run                                                                                                                    | Description   |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/RobCannon/boxstarter/master/dev_box.ps1'>dev_box</a> | My Boxstarter |
+| Click link to run                                                                                                                   | Description |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/RobCannon/boxstarter/master/step-1.ps1'>dev_box</a> | Step 1      |
+| <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/RobCannon/boxstarter/master/step-2.ps1'>dev_box</a> | Step 2      |
 
 #### Setup up WSL via curl
 
