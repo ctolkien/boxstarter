@@ -187,10 +187,10 @@ choco install -y sysinternals
 choco install -y cmder
 choco install -y docker-for-windows
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
-choco install -y python
+choco install -y python --installargs Include_pip=1
 RefreshEnv.cmd
 
-choco install -y pip
+#choco install -y pip
 choco install -y mongodb.install
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'MongoDB Compass Community.lnk' } | Remove-Item
 choco install -y kubernetes-cli
