@@ -68,6 +68,16 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 
 npm install -g npm npm-check-updates rimraf typescript@2.7.2 gulp @angular/cli 2>$null
 
+if (-not (Test-Path c:\Projects)) { New-Item -ItemType Directory -Path c:\Projects }
+if (-not (Test-Path c:\Projects\RobCannon)) { New-Item -ItemType Directory -Path c:\Projects\RobCannon }
+if (-not (Test-Path c:\Projects\GitHub)) { New-Item -ItemType Directory -Path c:\Projects\GitHub }
+if (-not (Test-Path c:\Projects\BuildServers)) { New-Item -ItemType Directory -Path c:\Projects\BuildServers }
+if (-not (Test-Path c:\Projects\Foundation)) { New-Item -ItemType Directory -Path c:\Projects\Foundation }
+if (-not (Test-Path c:\Projects\PowerShellModules)) { New-Item -ItemType Directory -Path c:\Projects\PowerShellModules }
+if (-not (Test-Path c:\Projects\Servers)) { New-Item -ItemType Directory -Path c:\Projects\Servers }
+if (-not (Test-Path c:\Projects\TechOps)) { New-Item -ItemType Directory -Path c:\Projects\TechOps }
+
+
 Enable-UAC
 Enable-MicrosoftUpdate
 Install-WindowsUpdate -acceptEula
