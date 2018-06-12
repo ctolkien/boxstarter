@@ -46,8 +46,6 @@ pip install samlkeygen
 choco install -y vscode
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
 RefreshEnv.cmd
-code --install-extension msjsdiag.debugger-for-chrome
-code --install-extension msjsdiag.debugger-for-edge
 code --install-extension abusaidm.html-snippets
 code --install-extension austincummings.razor-plus
 code --install-extension christian-kohler.npm-intellisense
@@ -70,6 +68,7 @@ code --install-extension mauve.terraform
 code --install-extension Microsoft.vsce
 code --install-extension mindginative.terraform-snippets
 code --install-extension moppitz.vscode-extension-auto-import
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-mssql.mssql
 code --install-extension ms-python.python
 code --install-extension ms-vscode.azure-account
@@ -78,9 +77,11 @@ code --install-extension ms-vscode.PowerShell
 code --install-extension ms-vscode.typescript-javascript-grammar
 code --install-extension ms-vsts.team
 code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension msjsdiag.debugger-for-edge
 code --install-extension NoHomey.angular-io-code
 code --install-extension PeterJausovec.vscode-docker
 code --install-extension quicktype.quicktype
+code --install-extension technosophos.vscode-helm
 
 #--- Visual Studio ---
 choco install -y visualstudio2017enterprise
