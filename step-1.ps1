@@ -71,6 +71,8 @@ Install-LatestFoundationModule FoundationUtil
 Install-LatestFoundationModule Foundation
 Install-Module -Name ImportExcel -Scope CurrentUser
 Install-Module -Name VSTeam -Scope CurrentUser
+Install-Module AWSPowerShell -Scope CurrentUser
+Install-Module Azure -Scope CurrentUser
 
 Write-Host "Enabling Windows Authentication on FQDN intranet sites" -ForegroundColor Yellow
 if (-not (Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\turner.com")) {
