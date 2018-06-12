@@ -46,8 +46,10 @@ pip install samlkeygen
 
 #--- VS Code ---
 choco install -y vscode
-Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
 RefreshEnv.cmd
+Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
+if (Test-Path "$env:APPDATA\Code\User") { Remove-Item "$env:APPDATA\Code\User" -Force -Recurse }
+New-Item -Path "$env:APPDATA\Code\User" -ItemType SymbolicLink -Value "$env:USERPROFILE\OneDrive\Documents\Keep\Tools\Code\User"
 code --install-extension abusaidm.html-snippets
 code --install-extension austincummings.razor-plus
 code --install-extension christian-kohler.npm-intellisense
