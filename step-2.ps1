@@ -8,8 +8,9 @@ Add-AppxPackage -Path ~/Ubuntu.appx
 Remove-Item ~/Ubuntu.appx
 
 #--- Browsers ---
+Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Microsoft Edge.lnk' } | Remove-Item
 choco install -y Googlechrome
-Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Google Chrome.lnk' } | Remove-Item
+Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Google Chrome.lnk' } | Remove-Item
 choco install -y lastpass --ignore-checksums
 
 #--- Tools ---
@@ -22,6 +23,7 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 choco install -y nodejs # Node.js Current, Latest features
 choco install -y sysinternals
 choco install -y cmder
+Copy-Item "$($env:USERPROFILE)\OneDrive\Documents\Keep\Tools\Cmder\ConEmu.xml" "C:\tools\cmder\vendor\conemu-maximus5\ConEmu.xml" -Force
 choco install -y docker-for-windows
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
 choco install -y python
@@ -68,15 +70,8 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 
 npm install -g npm npm-check-updates rimraf typescript@2.7.2 gulp @angular/cli 2>$null
 
-if (-not (Test-Path c:\Projects)) { New-Item -ItemType Directory -Path c:\Projects }
-if (-not (Test-Path c:\Projects\RobCannon)) { New-Item -ItemType Directory -Path c:\Projects\RobCannon }
-if (-not (Test-Path c:\Projects\GitHub)) { New-Item -ItemType Directory -Path c:\Projects\GitHub }
-if (-not (Test-Path c:\Projects\BuildServers)) { New-Item -ItemType Directory -Path c:\Projects\BuildServers }
-if (-not (Test-Path c:\Projects\Foundation)) { New-Item -ItemType Directory -Path c:\Projects\Foundation }
-if (-not (Test-Path c:\Projects\PowerShellModules)) { New-Item -ItemType Directory -Path c:\Projects\PowerShellModules }
-if (-not (Test-Path c:\Projects\Servers)) { New-Item -ItemType Directory -Path c:\Projects\Servers }
-if (-not (Test-Path c:\Projects\TechOps)) { New-Item -ItemType Directory -Path c:\Projects\TechOps }
 
+& "$($env:USERPROFILE)\OneDrive\Documents\Keep\Tools\VSTeam\InitProjects.ps1"
 
 Enable-UAC
 Enable-MicrosoftUpdate
