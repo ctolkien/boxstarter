@@ -29,7 +29,6 @@ Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Nam
 choco install -y python
 RefreshEnv.cmd
 
-choco install -y pip
 choco install -y mongodb.install
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'MongoDB Compass Community.lnk' } | Remove-Item
 choco install -y kubernetes-cli
@@ -70,6 +69,26 @@ Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { 
 
 npm install -g npm npm-check-updates rimraf typescript@2.7.2 gulp @angular/cli 2>$null
 
+
+function EnsurePath {
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $Path
+    )
+
+    if (-not (Test-Path $Path)) { New-Item -ItemType Directory -Path $Path | Out-Null }
+}
+
+
+EnsurePath c:\Projects
+EnsurePath c:\Projects\RobCannon
+EnsurePath c:\Projects\GitHub
+EnsurePath c:\Projects\BuildServers
+EnsurePath c:\Projects\Foundation
+EnsurePath c:\Projects\PowerShellModules
+EnsurePath c:\Projects\Servers
+EnsurePath c:\Projects\TechOps
 
 & "$($env:USERPROFILE)\OneDrive\Documents\Keep\Tools\VSTeam\InitProjects.ps1"
 
