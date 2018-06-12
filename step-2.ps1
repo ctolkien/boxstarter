@@ -47,8 +47,11 @@ pip install samlkeygen
 choco install -y vscode
 RefreshEnv.cmd
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
+
+# Setup synced settings folder from One Drive
 if (Test-Path "$env:APPDATA\Code\User") { Remove-Item "$env:APPDATA\Code\User" -Force -Recurse }
-New-Item -Path "$env:APPDATA\Code\User" -ItemType SymbolicLink -Value "$env:USERPROFILE\OneDrive\Documents\Keep\Tools\Code\User"
+New-Item -Path "$env:APPDATA\Code\User" -ItemType SymbolicLink -Value "$env:USERPROFILE\OneDrive\Documents\Keep\Tools\Code\User" | Out-Null
+
 code --install-extension abusaidm.html-snippets
 code --install-extension austincummings.razor-plus
 code --install-extension christian-kohler.npm-intellisense
