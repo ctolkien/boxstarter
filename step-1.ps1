@@ -52,6 +52,10 @@ if (-not (Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction:SilentlyCo
     Install-PackageProvider -Name NuGet -MinimumVersion '2.8.5.208' -Force -Scope CurrentUser
 }
 
+# Set strong cryptography on 32 bit .Net Framework (version 4 and above) so TLS 1.2 or above it used
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
+
 Write-Host "Bootstrapping NuGet provider" -ForegroundColor Yellow
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 
@@ -90,9 +94,6 @@ Update-Help -Force
 
 #--- Windows Features ---
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions
-
-# Enable QuickEdit mode
-Set-ItemProperty HKCU:\Console\ -name QuickEdit -value 1
 
 #--- File Explorer Settings ---
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Value 1
@@ -141,18 +142,21 @@ choco install -y IIS-WebServerRole -source windowsFeatures
 choco install -y Microsoft-Hyper-V-All -source windowsFeatures
 choco install -y Microsoft-Windows-Subsystem-Linux -source windowsfeatures
 
-#--- Fonts ---
-#choco install -y inconsolata
+#--- Console ---
 if (-not (Get-ChildItem ([Environment]::GetFolderPath('Fonts')) | ? Name -eq 'Sauce Code Pro Nerd Font Complete Mono.ttf')) {
     if (Test-Path "$env:TEMP\SourceCodePro.zip") { Remove-Item "$env:TEMP\SourceCodePro.zip" }
-    Invoke-WebRequest https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip -OutFile "$env:TEMP\SourceCodePro.zip"
+    Invoke-WebRequest https://github.com/ryanoasis/nerd-fonts/releases/download/v1.2.0/SourceCodePro.zip -OutFile "$env:TEMP\SourceCodePro.zip"
     Expand-Archive "$env:TEMP\SourceCodePro.zip" -DestinationPath "$env:TEMP\SourceCodePro"
     $fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)
     Get-Item "$env:TEMP\SourceCodePro\Sauce Code Pro Nerd Font Complete Mono.ttf" | % { $fonts.CopyHere($_.fullname) }
     Remove-Item "$env:TEMP\SourceCodePro.zip" -Force
     Remove-Item "$env:TEMP\SourceCodePro" -Recurse -Force
 }
-
+Set-ItemProperty -Path 'HKCU:\Console' -Name 'FaceName' -Value 'SauceCodePro Nerd Font Mono' -Type String
+Set-ItemProperty -Path 'HKCU:\Console' -Name 'FontSize' -Value 0x140000 -Type DWord
+Set-ItemProperty -Path 'HKCU:\Console' -Name 'ScreenBufferSize' -Value 0x270f0078 -Type DWord
+Set-ItemProperty -Path 'HKCU:\Console' -Name 'WindowSize' -Value 0x320078 -Type DWord
+Set-ItemProperty -Path 'HKCU:\Console' -Name 'QuickEdit' -Value 1
 
 Enable-UAC
 Enable-MicrosoftUpdate
