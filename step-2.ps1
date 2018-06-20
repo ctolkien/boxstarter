@@ -28,7 +28,7 @@ choco install -y nodejs # Node.js Current, Latest features
 choco install -y docker-for-windows
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
 choco install -y python
-RefreshEnv.cmd
+Update-SessionEnvironment
 
 choco install -y mongodb.install
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'MongoDB Compass Community.lnk' } | Remove-Item
@@ -45,7 +45,7 @@ pip install samlkeygen
 
 #--- VS Code ---
 choco install -y vscode
-RefreshEnv.cmd
+Update-SessionEnvironment
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
 
 # Setup synced settings folder from One Drive

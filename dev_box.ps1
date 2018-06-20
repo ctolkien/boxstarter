@@ -173,7 +173,7 @@ choco install -y cmder
 choco install -y docker-for-windows
 Get-ChildItem "$([Environment]::GetFolderPath('DesktopDirectory'))" | ? { $_.Name -eq 'Docker for Windows.lnk' } | Remove-Item
 choco install -y python --installargs Include_pip=1
-RefreshEnv.cmd
+Update-SessionEnvironment
 
 #choco install -y pip
 choco install -y mongodb.install
@@ -194,7 +194,7 @@ pip install samlkeygen
 #--- VS Code ---
 choco install -y vscode
 Get-ChildItem "$([Environment]::GetFolderPath('CommonDesktopDirectory'))" | ? { $_.Name -eq 'Visual Studio Code.lnk' } | Remove-Item
-RefreshEnv.cmd
+Update-SessionEnvironment
 code --install-extension shan.code-settings-sync
 code --install-extension msjsdiag.debugger-for-chrome
 code --install-extension msjsdiag.debugger-for-edge

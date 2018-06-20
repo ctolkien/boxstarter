@@ -97,16 +97,19 @@ Update-Help -Force
 #--- Windows Features ---
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions
 
+#--- Enable Developer Mode ---
+Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" "AllowDevelopmentWithoutDevLicense" 1
+
 #--- File Explorer Settings ---
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Value 1
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneShowAllFolders -Value 1
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -Value 1
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
-# Enable PIN and Windows Hello
+#--- Enable PIN and Windows Hello
 Set-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\System -name AllowDomainPINLogon -value 1
 
-# Remove Windows Store Apps
+#--- Remove Windows Store Apps ---
 Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
 Get-AppxPackage Microsoft.BingFinance | Remove-AppxPackage
 Get-AppxPackage Microsoft.BingNews | Remove-AppxPackage
